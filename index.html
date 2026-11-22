@@ -19,8 +19,9 @@
     @media(max-width:850px){.order-layout{grid-template-columns:1fr}.order-aside{position:static}}
     @media(max-width:580px){.order-form{grid-template-columns:1fr}.payment-card{grid-template-columns:1fr}.deposit-step{padding:18px}.deposit-actions .button{width:100%}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
-    #order-review{position:static;margin-top:16px;scroll-margin-top:90px;color:inherit}
-    #order-review[hidden]{display:none}
+    #review-page{max-width:640px;padding-block:40px}
+    #order-review{position:static;color:inherit}
+    #review-page[hidden],#top[hidden]{display:none}
     #order-review .order-total{gap:12px}
     #order-review strong{overflow-wrap:anywhere}
     .review-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:20px}
@@ -72,7 +73,7 @@
       <div class="wrap">
         <div class="section-head">
           <div><div class="section-label" data-ar="الطلب" data-en="Place an order">الطلب</div><h2 data-ar="اطلبي MARGOT." data-en="Order MARGOT.">اطلبي MARGOT.</h2></div>
-          <p data-ar="املئي بيانات التوصيل، ثم ادفعي ديبوزت ٥٠٪ وأرسلي صورة التحويل لتأكيد الطلب." data-en="Enter your delivery details, then pay a 50% deposit and send the transfer receipt to confirm your order.">املئي بيانات التوصيل، ثم ادفعي ديبوزت ٥٠٪ وأرسلي صورة التحويل لتأكيد الطلب.</p>
+          <p data-ar="املئي بيانات التوصيل، ثم ادفعي ديبوزت ٥٠٪ من الإجمالي شامل الشحن وأرسلي صورة التحويل لتأكيد الطلب." data-en="Enter your delivery details, then pay a 50% deposit on the total including shipping and send the transfer receipt to confirm your order.">املئي بيانات التوصيل، ثم ادفعي ديبوزت ٥٠٪ من الإجمالي شامل الشحن وأرسلي صورة التحويل لتأكيد الطلب.</p>
         </div>
         <div class="order-layout" style="grid-template-columns:minmax(0,1fr);margin-top:20px">
           <form class="order-form" id="order-form">
@@ -84,7 +85,7 @@
             <div class="field wide"><label for="address" data-ar="العنوان بالتفصيل" data-en="Full address">العنوان بالتفصيل</label><textarea id="address" name="address" autocomplete="street-address" required></textarea></div>
             <div class="deposit-step" id="deposit-step">
               <h3 data-ar="خطوة تأكيد الطلب" data-en="Order confirmation step">خطوة تأكيد الطلب</h3>
-              <p data-ar="حوّلي ٥٠٪ من إجمالي سعر المنتجات، ثم أرسلي صورة التحويل على واتساب قبل تأكيد الطلب." data-en="Transfer 50% of the product total, then send the receipt on WhatsApp before confirming your order.">حوّلي ٥٠٪ من إجمالي سعر المنتجات، ثم أرسلي صورة التحويل على واتساب قبل تأكيد الطلب.</p>
+              <p data-ar="حوّلي ٥٠٪ من إجمالي الطلب شامل الشحن، ثم أرسلي صورة التحويل على واتساب قبل تأكيد الطلب." data-en="Transfer 50% of the order total including shipping, then send the receipt on WhatsApp before confirming your order.">حوّلي ٥٠٪ من إجمالي الطلب شامل الشحن، ثم أرسلي صورة التحويل على واتساب قبل تأكيد الطلب.</p>
               <div class="payment-card">
                 <div class="payment-item"><span>InstaPay</span><strong id="instapay-number">01028335235</strong></div>
               </div>
@@ -94,22 +95,6 @@
               </div>
               <div id="instapay-copy-status" role="status"></div>
               <button class="button confirm-order" id="confirm-order" type="submit" disabled data-ar="مراجعة الطلب" data-en="Review order">مراجعة الطلب</button>
-              <section class="order-aside" id="order-review" hidden aria-labelledby="order-summary-title">
-              <h3 id="order-summary-title" tabindex="-1" data-ar="ملخص الطلب" data-en="Order Summary">ملخص الطلب</h3>
-              <div class="order-total"><span data-ar="المنتج" data-en="Product">المنتج</span><strong>MARGOT Cow Print Card Holder</strong></div>
-              <div class="order-total"><span data-ar="الكمية" data-en="Quantity">الكمية</span><strong id="summary-quantity">١</strong></div>
-              <div class="order-total"><span data-ar="إجمالي المنتجات" data-en="Product total">إجمالي المنتجات</span><strong id="summary-total">٨٠٠ جنيه</strong></div>
-              <div class="order-total"><span data-ar="الديبوزت المطلوب (٥٠٪)" data-en="Required deposit (50%)">الديبوزت المطلوب (٥٠٪)</span><strong id="deposit-amount">٤٠٠ جنيه</strong></div>
-              <div class="order-total"><span data-ar="المتبقي عند الاستلام" data-en="Balance on delivery">المتبقي عند الاستلام</span><strong id="remaining-amount">٤٠٠ جنيه</strong></div>
-              <p class="order-note" data-ar="المبالغ لا تشمل الشحن." data-en="Amounts exclude shipping.">المبالغ لا تشمل الشحن.</p>
-              <div class="order-total"><span data-ar="الاسم" data-en="Name">الاسم</span><strong id="review-name"></strong></div>
-              <div class="order-total"><span data-ar="رقم الهاتف" data-en="Phone">رقم الهاتف</span><strong id="review-phone" dir="ltr"></strong></div>
-              <div class="order-total"><span data-ar="عنوان التوصيل" data-en="Delivery address">عنوان التوصيل</span><strong id="review-address"></strong></div>
-              <div class="review-actions">
-              <button class="textlink" id="edit-order" type="button" data-ar="تعديل الطلب" data-en="Edit order">تعديل الطلب</button>
-              <a class="button" id="review-whatsapp" target="_blank" rel="noopener noreferrer" data-ar="تأكيد وفتح واتساب" data-en="Confirm and open WhatsApp">تأكيد وفتح واتساب</a>
-              </div>
-              </section>
             </div>
           </form>
         </div>
@@ -124,6 +109,25 @@
     </section>
 
   </main>
+  <main id="review-page" class="wrap" hidden>
+    <section class="order-aside" id="order-review" aria-labelledby="order-summary-title">
+              <h1 id="order-summary-title" tabindex="-1" data-ar="ملخص الطلب" data-en="Order Summary">ملخص الطلب</h1>
+              <div class="order-total"><span data-ar="المنتج" data-en="Product">المنتج</span><strong>MARGOT Cow Print Card Holder</strong></div>
+              <div class="order-total"><span data-ar="الكمية" data-en="Quantity">الكمية</span><strong id="summary-quantity">١</strong></div>
+              <div class="order-total"><span data-ar="إجمالي المنتجات" data-en="Product total">إجمالي المنتجات</span><strong id="summary-total">٨٠٠ جنيه</strong></div>
+              <div class="order-total"><span data-ar="الشحن" data-en="Shipping">الشحن</span><strong id="summary-shipping">١٠٠ جنيه</strong></div>
+              <div class="order-total"><span data-ar="الإجمالي شامل الشحن" data-en="Total including shipping">الإجمالي شامل الشحن</span><strong id="summary-grand-total">٩٠٠ جنيه</strong></div>
+              <div class="order-total"><span data-ar="الديبوزت المطلوب (٥٠٪)" data-en="Required deposit (50%)">الديبوزت المطلوب (٥٠٪)</span><strong id="deposit-amount">٤٥٠ جنيه</strong></div>
+              <div class="order-total"><span data-ar="المتبقي عند الاستلام" data-en="Balance on delivery">المتبقي عند الاستلام</span><strong id="remaining-amount">٤٥٠ جنيه</strong></div>
+              <div class="order-total"><span data-ar="الاسم" data-en="Name">الاسم</span><strong id="review-name"></strong></div>
+              <div class="order-total"><span data-ar="رقم الهاتف" data-en="Phone">رقم الهاتف</span><strong id="review-phone" dir="ltr"></strong></div>
+              <div class="order-total"><span data-ar="عنوان التوصيل" data-en="Delivery address">عنوان التوصيل</span><strong id="review-address"></strong></div>
+              <div class="review-actions">
+              <button class="textlink" id="edit-order" type="button" data-ar="تعديل الطلب" data-en="Edit order">تعديل الطلب</button>
+              <a class="button" id="review-whatsapp" target="_blank" rel="noopener noreferrer" data-ar="تأكيد وفتح واتساب" data-en="Confirm and open WhatsApp">تأكيد وفتح واتساب</a>
+              </div>
+    </section>
+  </main>
 
   <footer class="footer"><div class="wrap footer-inner"><a class="wordmark" href="#top">GHANEMA</a><div class="footer-note">OBJECTS WITH ATTITUDE · MARGOT</div><div>© <span id="year"></span> GHANEMA</div></div></footer>
   <script>
@@ -132,11 +136,28 @@
       const quantity=document.getElementById('quantity');
       const orderForm=document.getElementById('order-form');
       const confirmOrder=document.getElementById('confirm-order');
-      const review=document.getElementById('order-review');
-      const hideReview=()=>{review.hidden=true;};
-      orderForm.addEventListener('input',hideReview);
+      const shopPage=document.getElementById('top');
+      const reviewPage=document.getElementById('review-page');
+      const reviewLink=document.getElementById('review-whatsapp');
+      const showPage=()=>{
+        const reviewing=location.hash==='#order-summary' && reviewLink.hasAttribute('href');
+        const wasReviewing=!reviewPage.hidden;
+        reviewPage.hidden=!reviewing;
+        shopPage.hidden=reviewing;
+        if(reviewing){
+          window.scrollTo(0,0);
+          document.getElementById('order-summary-title').focus({preventScroll:true});
+        } else if(wasReviewing){
+          const destination=document.getElementById(location.hash.slice(1)) || confirmOrder;
+          destination.scrollIntoView();
+          if(destination===confirmOrder) confirmOrder.focus({preventScroll:true});
+        }
+      };
+      window.addEventListener('hashchange',showPage);
+      orderForm.addEventListener('input',()=>reviewLink.removeAttribute('href'));
       document.getElementById('edit-order').addEventListener('click',()=>{
-        hideReview();
+        location.hash='order';
+        showPage();
         document.getElementById('customer-name').focus();
       });
       let lang='ar';
@@ -167,17 +188,21 @@
           ? (lang==='ar'?'تم نسخ رقم InstaPay':'InstaPay number copied')
           : (lang==='ar'?`انسخي الرقم يدويًا: ${number}`:`Copy the number manually: ${number}`);
       });
+      const shipping=100;
       const updateTotal=()=>{
         const qty=Math.max(1,Math.min(10,Number(quantity.value)||1));
         const total=800*qty;
-        const deposit=total/2;
-        const formatted=lang==='ar'?`${new Intl.NumberFormat('ar-EG').format(total)} جنيه`:`EGP ${new Intl.NumberFormat('en-US').format(total)}`;
-        const depositFormatted=lang==='ar'?`${new Intl.NumberFormat('ar-EG').format(deposit)} جنيه`:`EGP ${new Intl.NumberFormat('en-US').format(deposit)}`;
+        const deposit=(total+shipping)/2;
+        const numberFormat=new Intl.NumberFormat(lang==='ar'?'ar-EG':'en-US');
+        const money=amount=>lang==='ar'?`${numberFormat.format(amount)} جنيه`:`EGP ${numberFormat.format(amount)}`;
+        const formatted=money(total);
         document.getElementById('form-total').textContent=lang==='ar'?`${formatted} إجمالي سعر المنتج`:`${formatted} product total`;
         document.getElementById('summary-quantity').textContent=new Intl.NumberFormat(lang==='ar'?'ar-EG':'en-US').format(qty);
         document.getElementById('summary-total').textContent=formatted;
-        document.getElementById('deposit-amount').textContent=depositFormatted;
-        document.getElementById('remaining-amount').textContent=depositFormatted;
+        document.getElementById('summary-shipping').textContent=money(shipping);
+        document.getElementById('summary-grand-total').textContent=money(total+shipping);
+        document.getElementById('deposit-amount').textContent=money(deposit);
+        document.getElementById('remaining-amount').textContent=money(total-deposit+shipping);
       };
       const addProduct=document.getElementById('add-product');
       const productQuantity=document.getElementById('product-quantity');
@@ -197,7 +222,7 @@
         const form=new FormData(orderForm);
         const qty=Math.max(1,Math.min(10,Number(form.get('quantity'))||1));
         const total=800*qty;
-        const deposit=total/2;
+        const deposit=(total+shipping)/2;
         const message=[
           '*طلب جديد | GHANEMA*',
           '',
@@ -211,10 +236,12 @@
           'MARGOT Cow Print Card Holder',
           `الكمية: ${qty} | سعر القطعة: 800 جنيه`,
           `إجمالي المنتجات: ${total} جنيه`,
+          `الشحن: ${shipping} جنيه`,
+          `الإجمالي شامل الشحن: ${total+shipping} جنيه`,
           '',
           '*الدفع*',
           `الديبوزت المطلوب (٥٠٪): ${deposit} جنيه`,
-          `المتبقي عند الاستلام: ${deposit} جنيه`,
+          `المتبقي عند الاستلام: ${total-deposit+shipping} جنيه`,
         ].join('\n');
         updateTotal();
         document.getElementById('review-name').textContent=form.get('name');
@@ -222,9 +249,9 @@
         document.getElementById('review-address').textContent=[
           form.get('governorate'),form.get('area'),form.get('address')
         ].join('، ');
-        document.getElementById('review-whatsapp').href=`https://wa.me/201028335235?text=${encodeURIComponent(message)}`;
-        review.hidden=false;
-        document.getElementById('order-summary-title').focus();
+        reviewLink.href=`https://wa.me/201028335235?text=${encodeURIComponent(message)}`;
+        location.hash='order-summary';
+        showPage();
       });
       confirmOrder.disabled=false;
       toggle.addEventListener('click',()=>{
