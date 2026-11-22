@@ -19,8 +19,8 @@
     @media(max-width:850px){.order-layout{grid-template-columns:1fr}.order-aside{position:static}}
     @media(max-width:580px){.order-form{grid-template-columns:1fr}.payment-card{grid-template-columns:1fr}.deposit-step{padding:18px}.deposit-actions .button{width:100%}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
-    #order-review{box-sizing:border-box;width:min(540px,calc(100% - 28px));max-height:calc(100dvh - 28px);overflow:auto;color:inherit}
-    #order-review::backdrop{background:#000a}
+    #order-review{position:static;margin-top:16px;scroll-margin-top:90px;color:inherit}
+    #order-review[hidden]{display:none}
     #order-review .order-total{gap:12px}
     #order-review strong{overflow-wrap:anywhere}
     .review-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:20px}
@@ -94,6 +94,22 @@
               </div>
               <div id="instapay-copy-status" role="status"></div>
               <button class="button confirm-order" id="confirm-order" type="submit" disabled data-ar="مراجعة الطلب" data-en="Review order">مراجعة الطلب</button>
+              <section class="order-aside" id="order-review" hidden aria-labelledby="order-summary-title">
+              <h3 id="order-summary-title" tabindex="-1" data-ar="ملخص الطلب" data-en="Order Summary">ملخص الطلب</h3>
+              <div class="order-total"><span data-ar="المنتج" data-en="Product">المنتج</span><strong>MARGOT Cow Print Card Holder</strong></div>
+              <div class="order-total"><span data-ar="الكمية" data-en="Quantity">الكمية</span><strong id="summary-quantity">١</strong></div>
+              <div class="order-total"><span data-ar="إجمالي المنتجات" data-en="Product total">إجمالي المنتجات</span><strong id="summary-total">٨٠٠ جنيه</strong></div>
+              <div class="order-total"><span data-ar="الديبوزت المطلوب (٥٠٪)" data-en="Required deposit (50%)">الديبوزت المطلوب (٥٠٪)</span><strong id="deposit-amount">٤٠٠ جنيه</strong></div>
+              <div class="order-total"><span data-ar="المتبقي عند الاستلام" data-en="Balance on delivery">المتبقي عند الاستلام</span><strong id="remaining-amount">٤٠٠ جنيه</strong></div>
+              <p class="order-note" data-ar="المبالغ لا تشمل الشحن." data-en="Amounts exclude shipping.">المبالغ لا تشمل الشحن.</p>
+              <div class="order-total"><span data-ar="الاسم" data-en="Name">الاسم</span><strong id="review-name"></strong></div>
+              <div class="order-total"><span data-ar="رقم الهاتف" data-en="Phone">رقم الهاتف</span><strong id="review-phone" dir="ltr"></strong></div>
+              <div class="order-total"><span data-ar="عنوان التوصيل" data-en="Delivery address">عنوان التوصيل</span><strong id="review-address"></strong></div>
+              <div class="review-actions">
+              <button class="textlink" id="edit-order" type="button" data-ar="تعديل الطلب" data-en="Edit order">تعديل الطلب</button>
+              <a class="button" id="review-whatsapp" target="_blank" rel="noopener noreferrer" data-ar="تأكيد وفتح واتساب" data-en="Confirm and open WhatsApp">تأكيد وفتح واتساب</a>
+              </div>
+              </section>
             </div>
           </form>
         </div>
@@ -107,31 +123,8 @@
       </div>
     </section>
 
-    <section class="section">
-      <div class="wrap end-card">
-        <span class="section-label" data-ar="MARGOT • GHANEMA" data-en="MARGOT • GHANEMA">MARGOT • GHANEMA</span>
-        <h2 data-ar="تفاصيل تستحق أن تُرى." data-en="A detail worth noticing.">تفاصيل تستحق أن تُرى.</h2>
-        <p data-ar="استكشفي تصميم MARGOT عن قرب، واختاري القطعة التي تعبّر عن أسلوبك." data-en="Take a closer look at MARGOT and choose the piece that reflects your style.">استكشفي تصميم MARGOT عن قرب، واختاري القطعة التي تعبّر عن أسلوبك.</p>
-        <a class="button" href="#piece" data-ar="شاهدي مواصفات القطعة" data-en="View the piece details">شاهدي مواصفات القطعة</a>
-      </div>
-    </section>
   </main>
-  <dialog class="order-aside" id="order-review" aria-labelledby="order-summary-title">
-          <h3 id="order-summary-title" data-ar="ملخص الطلب" data-en="Order Summary">ملخص الطلب</h3>
-          <div class="order-total"><span data-ar="المنتج" data-en="Product">المنتج</span><strong>MARGOT Cow Print Card Holder</strong></div>
-          <div class="order-total"><span data-ar="الكمية" data-en="Quantity">الكمية</span><strong id="summary-quantity">١</strong></div>
-          <div class="order-total"><span data-ar="إجمالي المنتجات" data-en="Product total">إجمالي المنتجات</span><strong id="summary-total">٨٠٠ جنيه</strong></div>
-          <div class="order-total"><span data-ar="الديبوزت المطلوب (٥٠٪)" data-en="Required deposit (50%)">الديبوزت المطلوب (٥٠٪)</span><strong id="deposit-amount">٤٠٠ جنيه</strong></div>
-          <div class="order-total"><span data-ar="المتبقي عند الاستلام" data-en="Balance on delivery">المتبقي عند الاستلام</span><strong id="remaining-amount">٤٠٠ جنيه</strong></div>
-          <p class="order-note" data-ar="المبالغ لا تشمل الشحن." data-en="Amounts exclude shipping.">المبالغ لا تشمل الشحن.</p>
-          <div class="order-total"><span data-ar="الاسم" data-en="Name">الاسم</span><strong id="review-name"></strong></div>
-          <div class="order-total"><span data-ar="رقم الهاتف" data-en="Phone">رقم الهاتف</span><strong id="review-phone" dir="ltr"></strong></div>
-          <div class="order-total"><span data-ar="عنوان التوصيل" data-en="Delivery address">عنوان التوصيل</span><strong id="review-address"></strong></div>
-          <div class="review-actions">
-            <form method="dialog"><button class="textlink" type="submit" autofocus data-ar="تعديل الطلب" data-en="Edit order">تعديل الطلب</button></form>
-            <a class="button" id="review-whatsapp" target="_blank" rel="noopener noreferrer" data-ar="تأكيد وفتح واتساب" data-en="Confirm and open WhatsApp">تأكيد وفتح واتساب</a>
-          </div>
-        </dialog>
+
   <footer class="footer"><div class="wrap footer-inner"><a class="wordmark" href="#top">GHANEMA</a><div class="footer-note">OBJECTS WITH ATTITUDE · MARGOT</div><div>© <span id="year"></span> GHANEMA</div></div></footer>
   <script>
     (()=>{
@@ -139,6 +132,13 @@
       const quantity=document.getElementById('quantity');
       const orderForm=document.getElementById('order-form');
       const confirmOrder=document.getElementById('confirm-order');
+      const review=document.getElementById('order-review');
+      const hideReview=()=>{review.hidden=true;};
+      orderForm.addEventListener('input',hideReview);
+      document.getElementById('edit-order').addEventListener('click',()=>{
+        hideReview();
+        document.getElementById('customer-name').focus();
+      });
       let lang='ar';
       const copyStatus=document.getElementById('instapay-copy-status');
       document.getElementById('copy-instapay').addEventListener('click',async()=>{
@@ -223,7 +223,8 @@
           form.get('governorate'),form.get('area'),form.get('address')
         ].join('، ');
         document.getElementById('review-whatsapp').href=`https://wa.me/201028335235?text=${encodeURIComponent(message)}`;
-        document.getElementById('order-review').showModal();
+        review.hidden=false;
+        document.getElementById('order-summary-title').focus();
       });
       confirmOrder.disabled=false;
       toggle.addEventListener('click',()=>{
